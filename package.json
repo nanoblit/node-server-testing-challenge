@@ -2,7 +2,7 @@
   "name": "node-server-testing",
   "version": "1.0.0",
   "description": "Node Server Testing Challenge",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "test": "cross-env DB_ENV=testing jest --watch --verbose"
   },
