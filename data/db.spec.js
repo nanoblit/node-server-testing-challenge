@@ -5,6 +5,10 @@ beforeEach(async () => {
   await knex('users').truncate();
 });
 
+afterEach(async () => {
+  await knex('users').truncate();
+});
+
 describe('db.getAllUsers()', () => {
   it('gets users from the db and empty array if there are no users', async () => {
     let users = await db.getAllUsers();
@@ -16,9 +20,6 @@ describe('db.getAllUsers()', () => {
     users = await db.getAllUsers();
     expect(users).toHaveLength(2);
   });
-});
-
-describe('getUserById(id)', () => {
   it('returns the user and undefined if there is no user with given id', async () => {
     let user = await db.getUserById(1);
     expect(user).toBeUndefined();
@@ -28,9 +29,6 @@ describe('getUserById(id)', () => {
     user = await db.getUserById(1);
     expect(user).toEqual({ id: 1, username: 'Adam' });
   });
-});
-
-describe('db.postUser(data)', () => {
   it('is able to add users to the db', async () => {
     let users = await knex('users');
     expect(users).toHaveLength(0);
@@ -46,9 +44,6 @@ describe('db.postUser(data)', () => {
     const user = await db.addUser({ username: 'Adam' });
     expect(user).toEqual({ id: 1, username: 'Adam' });
   });
-});
-
-describe('deleteUser(id)', () => {
   it('is able to delete users from the db', async () => {
     let users = await knex('users');
     expect(users).toHaveLength(0);
